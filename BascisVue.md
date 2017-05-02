@@ -14,6 +14,25 @@
 + 實際應用的案例少
 
 
++ Hello World
+Syntax:
+```  
+<div id="app">
+    {{ message }}
+</div>
+
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            message:'Hello World!'
+        }
+    });
+</script>
+
+```
+
+
 ## 其他參考函示庫(圖表)
 + [Charts.js](http://www.chartjs.org/ "Charts.js")
 + [Morris.js](http://morrisjs.github.io/morris.js/index.html "Morris.js")
