@@ -98,6 +98,47 @@
 + v-else ： 這是當v-show或v-if條件不成立時需要選擇的答案
 + score預設值是0，會根據目前輸入的分數去做判斷，判斷內容就是大於等於6分以上就會顯示。
 
+#### v-on:click
+- [ ] Syntax:
+```  
+<div id="app">
+    <p>目前以點擊：{{count}}次</p>
+    <input type="submit" value="立即送出" v-on:click="clickme">
+</div>
+
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            count:0
+        },
+        methods:{
+            clickme: function(){
+                 this.count += 1;
+            }
+        }
+    });
+</script>
+```
++ v-on:click屬性，會呼叫下方methods裡面clickme的function內容
+```
+<div id="app">
+    <button v-on:click="handleIt('uh')">I say uh</button>
+    <button v-on:click="handleIt('ah')">you say ah</button>
+</div>
+
+<script>
+    new Vue({
+        el:'#app',
+
+        methods:{
+            handleIt: function(msg){
+                alert(msg)
+            }
+        }
+    });
+</script>
+```
 
 ## 其他參考函示庫(圖表)
 + [Charts.js](http://www.chartjs.org/ "Charts.js")
