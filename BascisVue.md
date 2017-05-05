@@ -139,6 +139,55 @@
     });
 </script>
 ```
+### v-on:submit
+
++ 與v-on:click很像，一個是click一個是submit的差別而已。
+
+- [ ] Syntax:
+```  
+<div id="app">
+    <form action="submit.html" v-on:submit.prevent="handleIt">
+        <button type="submit">立即送出</button>
+    </form>
+</div>
+
+<script>
+    new Vue({
+        el:'#app',
+
+        methods:{
+            handleIt: function(){
+                alert("here I am!");
+            }
+        }
+    });
+</script>
+```
++ .prevent - 在submit前動作
++ .stop
++ .self
++ .captur
++ .keyup
+
+### for loop
+
++ 99乘法表
+- [ ] Syntax:
+```  
+<div id="app">
+    <div v-for="i in 9">
+      <h3>{{ i }}</h3>
+      <div v-for="j in 9">{{ i }} x {{ j }}={{ i*j }}</div>
+    </div>
+</div>
+
+<script>
+    new Vue({
+        el:'#app'
+    });
+</script>
+```
+
 
 ## 其他參考函示庫(圖表)
 + [Charts.js](http://www.chartjs.org/ "Charts.js")
