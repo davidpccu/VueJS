@@ -15,7 +15,23 @@
 
 [jquery-to-vuejs](https://yami.io/jquery-to-vuejs/ "jquery-to-vuejs")
 
-#### Hello World
+### 元件基本屬性與方法
+```  
+new Vue({
+    el,         // 要綁定的Dom element
+    data,       // 要綁定的資料
+    props,      // 可用來接收父元件資料的屬性
+    template,   // 要解析的樣板，可以是 #id, Html, Dom element
+    render,     // 將template編譯成render函數
+    computed,   // 定義資料的getter 與 setter，即需要計算後才能使用的屬性
+    components, // 定義子元件，可用ES6簡寫法，例如 { MyHeader }
+    methods,    // 定義可以在元件或樣板內使用的方法
+    propsData,  // 存放預設的props內容，方便測試用
+    }
+});
+
+```  
+### Hello World
 
 - [ ] Syntax:
 ```  
@@ -47,7 +63,7 @@
  
 ```
 
-#### Real-Time (v-model)
+### Real-Time (v-model)
 
 - [ ] Syntax:
 ```  
@@ -71,7 +87,7 @@
 + 我們將{{message}} 加上h1標籤，然後在下方新增一個文字的input輸入表單，接著v-model名稱是message，所以這個input就會自動帶入與{{message}} 相同的參數內容，而你只要變更inupt裡面的文字，頁面上的{{message}}參數也會立刻馬上一起更新
 + $data，也就是下面var data的內容，而|在這邊是filter的意思，也就是篩選。顯示json格式組出來的data參數值
 
-#### if else (v-show)
+### if else (v-show)
 - [ ] Syntax:
 ```  
 <div id="app">
@@ -98,7 +114,7 @@
 + v-else ： 這是當v-show或v-if條件不成立時需要選擇的答案
 + score預設值是0，會根據目前輸入的分數去做判斷，判斷內容就是大於等於6分以上就會顯示。
 
-#### v-on:click
+### v-on:click
 - [ ] Syntax:
 ```  
 <div id="app">

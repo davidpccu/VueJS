@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;">
+    <title>VueJS</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+        hr {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border-style: dashed;
+            border-color: #C9C9C9 #C9C9C9 #D4D4D4 #C9C9C9;
+            border-width: 0px 0px 1px 0px;
+            text-align: left;
+            color: #000000;
+        }
+        
+        .blue {
+            color: blue
+        }
+        
+        .big-size {
+            font-size: 30px;
+        }
+        
+        .pink-bg {
+            background-color: pink;
+        }
+        
+        .fade-enter-active {
+            transition: opacity .5s;
+        }
+        
+        .fade-enter,
+        .fade-leave-active {
+            transition: opacity .5s;
+            opacity: 0;
+        }
+        
+        .block {
+            border: 1px solid #000;
+            width: 200px;
+            height: 200px;
+            background-color: #ff0;
+            margin-bottom: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{ message }}</h1>
+        <input v-model="message" type="text">
+    </div>
+
+    <hr>
+
+    <div class="form-input">
+        <h1>V-Model</h1>
+        <span>Message is: {{ message }}</span>
+        <br>
+        <input type="text" v-model="message" placeholder="edit me">
+    </div>
+
+    <hr>
+
+    <div class="form-chkbox">
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{ checked }}</label>
+    </div>
+
+    <hr>
+
+    <div class="form-chkboxes">
+        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+        <label for="mike">Mike</label>
+        <br>
+        <span>Checked names: {{ checkedNames | json }}</span>
+    </div>
+
+    <hr>
+
+    <div class="form-radio">
+        <input type="radio" id="one" value="One" v-model="picked">
+        <label for="one">One</label>
+        <br>
+        <input type="radio" id="two" value="Two" v-model="picked">
+        <label for="two">Two</label>
+        <br>
+        <span>Picked: {{ picked }}</span>
+    </div>
+
+    <hr>
+
+    <div class="form-select">
+        <select v-model="selected">
+            <option>A</option>
+            <option selected>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+    </div>
+
+    <hr>
+
+    <div id="app2">
+        <h1> V-Bind</h1>
+        <a v-bind:href="url" target="_blank">Link 1</a>
+        <br>
+        <a :href="url" target="_blank">Link2</a>
+        <br>
+
+        <img v-bind:src="imgUrl" alt="cat">
+        <br>
+        <img :src="imgUrl" alt="cat">
+
+        <div v-bind="{ id: customId }">Vue</div>
+
+    </div>
+
+    <hr>
+
+    <div id="app3">
+        <h1>V-on</h1>
+        <button v-on:click="greet">Greet</button>
+    </div>
+
+    <hr>
+
+    <div id="app4">
+        <h1>Class</h1>
+        <div v-bind:class="{ blue: isBlue }">
+            1 Hello Vue!
+        </div>
+
+        <div :class="largeFont">
+            2 Hello Vue!
+        </div>
+
+        <div :class="[largeFont, pinkBackground] ">
+            3 Hello Vue!
+        </div>
+
+        <div :style="styleObject1">
+            4 Hello Vue!
+        </div>
+
+        <div :style="[styleObject1, styleObject2]">
+            5 Hello Vue!
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div id="app5" style="font-size: 20px; font-weight: 900;">
+        <h1>V-if & V-Show</h1>
+        <div v-if="cond">Yes</div>
+        <div v-else>No</div>
+
+        <div v-show="cond">Yes</div>
+        <div v-show="!cond">No</div>
+
+        <template v-if="cond">
+            <h3> V-Show 不支援template</h3>
+            <div>Yes</div>
+            <div>No</div>
+        </template>
+    </div>
+
+    <hr>
+
+    <div style="width: 100%; overflow: auto;">
+
+        <div id="app6" style="float:left">
+            <h3>Fade in Vue</h3>
+            <transition name="fade">
+                <div v-if="flag" class="block"></div>
+            </transition>
+
+            <button @click="toggle">Toggle</button>
+        </div>
+
+        <div id="app7" style="float:left">
+            <h3>Slide in Vue (Using Jquery)</h3>
+            <transition v-on:enter="enter" v-on:leave="leave">
+
+                <div v-show="flag" class="block"></div>
+            </transition>
+
+
+            <button @click="toggle">Toggle</button>
+        </div>
+    </div>
+
+    <hr>
+
+
+    <div id="app9">
+        <h1>Jquery Plugins With Vue</h1>
+        <date-picker @update-date="updateDate" date-format="yy-mm-dd" v-once></date-picker>
+        <p>{{ date }}</p>
+    </div>
+
+    <hr>
+
+    <div id="app8">
+        <h1>Ajax</h1>
+        <pre>{{ rows }}</pre>
+
+        <ul>
+            <li v-for="r in rows">
+                <div>{{ r._id }}</div>
+                <div>{{ r.about }}</div>
+            </li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <div id="form">
+        <form action="#">
+            <p>
+                名子: <input name="name" v-model="person.name">
+                <span style="color: red" v-show="person.name">請輸入姓名</span>
+            </p>
+            <p>
+                密碼: <input name="passwd" type="password" v-model="person.passwd">
+                <span style="color: red" v-show="person.passwd">請輸入密碼</span>
+            </p>
+            <p>
+                再次輸入密碼: <input name="passwd" type="password" v-model="person.passwd2">
+                <span style="color: red" v-show="person.passwd2">兩次密碼需相同</span>
+            </p>
+            <p>
+                性別:
+                <input v-model="person.gender" name="gender" type="radio" value="男">男
+                <input v-model="person.gender" name="gender" type="radio" value="女">女
+                <input v-model="person.gender" name="gender" type="radio" value="其他">其他
+                <span style="color: red">{{ person.gender }}</span>
+            </p>
+            <p>
+                興趣:
+                <input v-model="person.hobby" name="hobby" type="checkbox" value="閱讀">閱讀
+                <input v-model="person.hobby" name="hobby" type="checkbox" value="運動">運動
+                <input v-model="person.hobby" name="hobby" type="checkbox" value="音樂">音樂
+                <input v-model="person.hobby" name="hobby" type="checkbox" value="電影">電影
+                <input v-model="person.hobby" name="hobby" type="checkbox" value="聊天">聊天
+                <span style="color: red">請選擇興趣</span>
+            </p>
+            <p>
+                <input type="submit">
+                <input type="reset">
+            </p>
+        </form>
+    </div>
+</body>
+<script src="js/script.js" type="text/javascript"></script>
+
+</html>
